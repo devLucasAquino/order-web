@@ -1,7 +1,7 @@
 import { Frown, X } from "lucide-react";
 import { OrderProduct } from "./order-product";
 import { productInterface } from "../App";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ConfirmModal } from "./confirm-modal";
 
 interface DrawerOrderProps{
@@ -20,7 +20,20 @@ export function DrawerOrder({
     const [counts, setCounts] = useState<{ [key: string]: number }>({});
 
     function handleConfirmBtn(){
-        window.open(`https://wa.me/5511949938786/?text=fala ai zé`, '_blank');
+        let message = `*PEDIDO* \n\n`;
+        selectedProduct.forEach((item) => {
+            message += `- *${item.title.toUpperCase()}* \n`;
+            message += `  *Valor Unitário*: R$${item.value} \n`;
+            message += `  *Quantidade*: ${counts[item.id] || 1} \n\n`;
+        });
+
+        message += `*----------------------------*\n`;
+        message += `*Valor Final: ${selectedProduct.reduce((accumulator, item) => {
+            return accumulator + (item.value * (counts[item.id] || 1));
+        }, 0).toFixed(2)}*\n`;
+
+        const encodedMessage = encodeURIComponent(message);
+        window.open(`https://wa.me/5511949938786/?text=${encodedMessage}`, '_blank');
     };
 
     const handleCountChange = (id: string, newCount: number) => {
@@ -29,17 +42,6 @@ export function DrawerOrder({
             [id]: newCount,
         }));
     };
-
-    let message = `PEDIDO \n\n`;
-
-    useEffect(() => {
-        selectedProduct.map((item) => 
-        message += `
-                        ${item.title}\n
-                        quantidade: ${counts[item.id]}\n
-                    `
-        )
-    }, [selectedProduct, counts])
 
     return(
         <article className={`fixed px-5 py-9 bg-red-gradient h-full bg-gray-100 w-[25%] top-0 right-0`}>
@@ -73,6 +75,11 @@ export function DrawerOrder({
                         </div>
                     )
                 }
+                <div className="flex justify-center mt-5">
+                    <h1 className="text-xl font-medium">Valor Total: <span className="font-bold text-3xl">R${selectedProduct.reduce((accumulator, item) => {
+                        return accumulator + (item.value * (counts[item.id] || 1));
+                    }, 0).toFixed(2)}</span></h1>
+                </div>
             </main>
             {selectedProduct.length > 0 && (
                 <footer className="flex justify-center">
