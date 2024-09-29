@@ -14,7 +14,7 @@ export function OrderProduct({
     handleSelectedProduct,
 }: OrderProductProps){
 
-    const [ count, setCount ] = useState(0);
+    const [ count, setCount ] = useState(1);
 
     return(
         <div className="bg-gray-50 rounded-md w-full font-medium text-xl p-2 relative">
@@ -30,7 +30,7 @@ export function OrderProduct({
                     </span>
                     <div className="flex justify-start items-center gap-4">
                         <button 
-                            onClick={() => setCount((count) => count - 1)}
+                            onClick={() => count > 1 && setCount((count) => count - 1)}
                             className="bg-black rounded-full">
                             <Minus className="text-white"/>
                         </button>
