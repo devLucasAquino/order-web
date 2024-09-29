@@ -3,10 +3,15 @@ import { ProductCard } from "./components/product-card"
 import { DrawerOrder } from "./components/drawer-order"
 import { useState } from "react"
 
+export interface productInterface{
+  title: string,
+  value: number,
+}
+
 export function App() {
 
   const [ openDrawerOrder,  setOpenDrawerOrder ] = useState(false);
-  const [ selectedProduct, setSelectedProduct ] = useState<{title: string}[]>([]);
+  const [ selectedProduct, setSelectedProduct ] = useState<productInterface[]>([]);
 
   return (
     <>
