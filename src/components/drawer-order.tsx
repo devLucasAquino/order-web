@@ -16,8 +16,8 @@ export function DrawerOrder({
 
     const [ openConfirmModal, setOpenConfirmModal ] = useState(false);
 
-    function handleConfirmModal(){
-        setOpenConfirmModal(true);
+    function handleConfirmBtn(){
+        window.open(`https://wa.me/5511949938786/?text=fala ai zé`, '_blank');
     };
 
     return(
@@ -32,6 +32,7 @@ export function DrawerOrder({
                 {selectedProduct.map((order, index) => (
                     <div key={index}>
                         <OrderProduct 
+                            img={order.img}
                             title={order.title}
                             value={order.value}
                         />
@@ -49,7 +50,8 @@ export function DrawerOrder({
             )}
 
             {openConfirmModal && (
-                <ConfirmModal 
+                <ConfirmModal
+                    handleConfirmBtn={handleConfirmBtn}
                     setOpenConfirmModal={setOpenConfirmModal}
                 />
             )}

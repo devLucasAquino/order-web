@@ -1,11 +1,11 @@
 import { Minus, Plus, Trash2Icon } from "lucide-react";
 import { productInterface } from "../App";
-import brigadeiroImg from "../assets/brigadeiro.jpg";
 import { useState } from "react";
 
 export function OrderProduct({
-    title,
+    img,
     value,
+    title,
 }: productInterface){
 
     const [ count, setCount ] = useState(0);
@@ -13,7 +13,7 @@ export function OrderProduct({
     return(
         <div className="bg-gray-50 rounded-md w-full font-medium text-xl p-2 relative">
             <div className="flex gap-3">
-                <img className="size-32 rounded-md" src={brigadeiroImg} />
+                <img className="size-32 rounded-md" src={img} />
                 <div className="flex flex-col w-full gap-4">
                     <div className="flex justify-between">
                         <h1>{title}</h1>
