@@ -1,9 +1,9 @@
 import { Minus, Plus, Trash2Icon } from "lucide-react";
 import { productInterface } from "../App";
-import { useState } from "react";
-
 interface OrderProductProps extends productInterface{
+    count: number;
     handleSelectedProduct: (id: string) => void;
+    handleCountChange: (id: string, newCount: number) => void;
 }
 
 export function OrderProduct({
@@ -11,10 +11,20 @@ export function OrderProduct({
     img,
     value,
     title,
+    count,
+    handleCountChange,
     handleSelectedProduct,
 }: OrderProductProps){
 
-    const [ count, setCount ] = useState(1);
+    const incrementCount = () => {
+        handleCountChange(id, count + 1);
+    };
+
+    const decrementCount = () => {
+        if (count > 1) {
+            handleCountChange(id, count - 1);
+        }
+    };
 
     return(
         <div className="bg-gray-50 rounded-md w-full font-medium text-xl p-2 relative">
@@ -30,13 +40,13 @@ export function OrderProduct({
                     </span>
                     <div className="flex justify-start items-center gap-4">
                         <button 
-                            onClick={() => count > 1 && setCount((count) => count - 1)}
+                            onClick={decrementCount}
                             className="bg-black rounded-full">
                             <Minus className="text-white"/>
                         </button>
                             {count}
                         <button 
-                            onClick={() => setCount((count) => count + 1)} 
+                            onClick={incrementCount} 
                             className="bg-black rounded-full"
                             ><Plus className="text-white"/>
                         </button>

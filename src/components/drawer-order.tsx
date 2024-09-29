@@ -17,14 +17,29 @@ export function DrawerOrder({
 }: DrawerOrderProps){
 
     const [ openConfirmModal, setOpenConfirmModal ] = useState(false);
+    const [counts, setCounts] = useState<{ [key: string]: number }>({});
 
     function handleConfirmBtn(){
         window.open(`https://wa.me/5511949938786/?text=fala ai zé`, '_blank');
     };
 
+    const handleCountChange = (id: string, newCount: number) => {
+        setCounts((prevCounts) => ({
+            ...prevCounts,
+            [id]: newCount,
+        }));
+    };
+
+    let message = `PEDIDO \n\n`;
+
     useEffect(() => {
-        console.log("Lista de produtos selecionados atualizada:", selectedProduct);
-    }, [selectedProduct])
+        selectedProduct.map((item) => 
+        message += `
+                        ${item.title}\n
+                        quantidade: ${counts[item.id]}\n
+                    `
+        )
+    }, [selectedProduct, counts])
 
     return(
         <article className={`fixed px-5 py-9 bg-red-gradient h-full bg-gray-100 w-[25%] top-0 right-0`}>
@@ -45,6 +60,8 @@ export function DrawerOrder({
                                     img={order.img}
                                     title={order.title}
                                     value={order.value}
+                                    count={counts[order.id] || 1}
+                                    handleCountChange={handleCountChange}
                                     handleSelectedProduct={handleSelectedProduct}
                                 />
                             </div>
