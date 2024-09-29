@@ -34,7 +34,13 @@ export function App() {
 
   useEffect(() => { 
       getData();
-  }, [])
+  }, []);
+
+  function handleSelectedProduct(id: string){
+    const updatedProducts = selectedProduct.filter(product => product.id !== id);
+
+    setSelectedProduct(updatedProducts)
+  };
 
   return (
     <>
@@ -54,18 +60,19 @@ export function App() {
               img={item.img}
               title={item.title}
               value={item.value}
+              selectedProduct={selectedProduct}
               setSelectedProduct={setSelectedProduct}
+              handleSelectedProduct={handleSelectedProduct}
             />
           </div>
         ))}
       </main>
 
-
       {openDrawerOrder && (
         <DrawerOrder
           selectedProduct={selectedProduct}
-          setSelectedProduct={setSelectedProduct}
           setOpenDrawerOrder={setOpenDrawerOrder}
+          handleSelectedProduct={handleSelectedProduct}
         />
       )}
 
