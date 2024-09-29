@@ -2,11 +2,17 @@ import { Minus, Plus, Trash2Icon } from "lucide-react";
 import { productInterface } from "../App";
 import { useState } from "react";
 
+interface OrderProductProps extends productInterface{
+    handleSelectedProduct: (id: string) => void;
+}
+
 export function OrderProduct({
+    id,
     img,
     value,
     title,
-}: productInterface){
+    handleSelectedProduct,
+}: OrderProductProps){
 
     const [ count, setCount ] = useState(0);
 
@@ -39,6 +45,7 @@ export function OrderProduct({
 
             </div>
             <button
+                onClick={() => handleSelectedProduct(id)}
                 className="absolute bottom-2 right-2"
             ><Trash2Icon className="size-5 text-red-600"/>
             </button>

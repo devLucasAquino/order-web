@@ -1,17 +1,19 @@
 import { X } from "lucide-react";
 import { OrderProduct } from "./order-product";
 import { productInterface } from "../App";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ConfirmModal } from "./confirm-modal";
 
 interface DrawerOrderProps{
     selectedProduct: productInterface[];
     setOpenDrawerOrder: (e: boolean) => void;
+    setSelectedProduct: React.Dispatch<React.SetStateAction<productInterface[]>>;
 }
 
 export function DrawerOrder({
     selectedProduct,
     setOpenDrawerOrder,
+    setSelectedProduct,
 }: DrawerOrderProps){
 
     const [ openConfirmModal, setOpenConfirmModal ] = useState(false);
@@ -19,6 +21,16 @@ export function DrawerOrder({
     function handleConfirmBtn(){
         window.open(`https://wa.me/5511949938786/?text=fala ai zé`, '_blank');
     };
+
+    function handleSelectedProduct(id: string){
+        const updatedProducts = selectedProduct.filter(product => product.id !== id);
+
+        setSelectedProduct(updatedProducts)
+    };
+
+    useEffect(() => {
+        console.log("Lista de produtos selecionados atualizada:", selectedProduct);
+    }, [selectedProduct])
 
     return(
         <article className={`fixed z-50 px-5 py-9 bg-red-gradient h-full bg-gray-100 w-[25%] top-0 right-0`}>
@@ -31,10 +43,12 @@ export function DrawerOrder({
             <main className="grid grid-cols-1 gap-1 mb-10">
                 {selectedProduct.map((order, index) => (
                     <div key={index}>
-                        <OrderProduct 
+                        <OrderProduct
+                            id={order.id} 
                             img={order.img}
                             title={order.title}
                             value={order.value}
+                            handleSelectedProduct={handleSelectedProduct}
                         />
                     </div>
                 ))}

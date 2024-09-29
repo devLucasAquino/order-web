@@ -4,7 +4,7 @@ import { DrawerOrder } from "./components/drawer-order"
 import { useEffect, useState } from "react"
 
 export interface productInterface{
-  id?: string,
+  id: string,
   title: string,
   value: number,
   img: string,
@@ -48,13 +48,15 @@ export function App() {
       </header>      
       <main className="grid grid-cols-3 grid-rows-2 ml-36 mr-36 mt-24 gap-20">
         {allProducts.map((item) => (
-          <ProductCard 
-            id={item.id}
-            img={item.img}
-            title={item.title}
-            value={item.value}
-            setSelectedProduct={setSelectedProduct}
-          />
+          <div key={item.id}>
+            <ProductCard 
+              id={item.id}
+              img={item.img}
+              title={item.title}
+              value={item.value}
+              setSelectedProduct={setSelectedProduct}
+            />
+          </div>
         ))}
       </main>
 
@@ -62,6 +64,7 @@ export function App() {
       {openDrawerOrder && (
         <DrawerOrder
           selectedProduct={selectedProduct}
+          setSelectedProduct={setSelectedProduct}
           setOpenDrawerOrder={setOpenDrawerOrder}
         />
       )}
