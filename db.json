@@ -1,0 +1,22 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "title": "brigadeiro",
+            "value": 12.99,
+            "img": "https://t3.ftcdn.net/jpg/00/51/25/70/360_F_51257090_nRwT7YiPRp6TTyB6YnipFrxfd7XLGQLt.jpg"
+        },
+        {
+            "id": 2,
+            "title": "tapioca",
+            "value": 5.99,
+            "img": "https://t3.ftcdn.net/jpg/03/00/95/38/360_F_300953830_gsK0Viv3b8NspmbHh2AQnyEa7x8NwAAS.jpg"
+        },
+        {
+            "id": 3,
+            "title": "pudim",
+            "value": 24.99,
+            "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgqBsJcEg9mHh1ok2CNcxr8D9wCSG4in-I5w&s"
+        }
+    ]
+}
