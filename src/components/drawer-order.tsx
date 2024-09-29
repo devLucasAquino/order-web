@@ -33,7 +33,7 @@ export function DrawerOrder({
         }, 0).toFixed(2)}*\n`;
 
         const encodedMessage = encodeURIComponent(message);
-        window.open(`https://wa.me/5511949938786/?text=${encodedMessage}`, '_blank');
+        window.open(`https://wa.me/5511976253412/?text=${encodedMessage}`, '_blank');
     };
 
     const handleCountChange = (id: string, newCount: number) => {
