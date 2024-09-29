@@ -10,7 +10,6 @@ export function ProductCard({
     setSelectedProduct,
 }: ProductCardProps){
 
-    
     const title = "Brigadeiro"
     const value = 20;
 
@@ -28,7 +27,7 @@ export function ProductCard({
                     ...prev, 
                     { title, value }   
                 ])}
-                className="bg-green-500 text-white font-medium rounded-sm py-2 px-16"
+                className="bg-green-500 text-white font-medium rounded-sm py-2 px-16 hover:bg-green-700 transition-all"
                 >Adicionar
               </button>
             </div>
