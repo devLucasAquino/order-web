@@ -66,6 +66,11 @@ export function DrawerOrder({
                                     handleCountChange={handleCountChange}
                                     handleSelectedProduct={handleSelectedProduct}
                                 />
+                                <div className="flex justify-center mt-5">
+                                    <h1 className="text-xl font-medium">Valor Total: <span className="font-bold text-3xl">R${selectedProduct.reduce((accumulator, item) => {
+                                        return accumulator + (item.value * (counts[item.id] || 1));
+                                    }, 0).toFixed(2)}</span></h1>
+                                </div>
                             </div>
                         ))
                     ) : (
@@ -75,11 +80,6 @@ export function DrawerOrder({
                         </div>
                     )
                 }
-                <div className="flex justify-center mt-5">
-                    <h1 className="text-xl font-medium">Valor Total: <span className="font-bold text-3xl">R${selectedProduct.reduce((accumulator, item) => {
-                        return accumulator + (item.value * (counts[item.id] || 1));
-                    }, 0).toFixed(2)}</span></h1>
-                </div>
             </main>
             {selectedProduct.length > 0 && (
                 <footer className="flex justify-center">

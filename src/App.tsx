@@ -46,9 +46,16 @@ export function App() {
     <>
       <header className="h-32 flex justify-center items-center">
         <nav className="flex items-center gap-5 text-xl font-normal text-zinc-800">
-          <div>CandyCrush</div>
+          <div className="text-4xl">CandyCrush</div>
           <button onClick={() => setOpenDrawerOrder(true)}>
-            <ShoppingCart />
+            <div className="relative w-auto">
+              <div className="absolute p-[1px] w-auto h-auto top-0 right-0 rounded-full bg-white">
+                {selectedProduct.length > 0 && (
+                  <h6 className="text-sm">{selectedProduct.length}</h6>
+                )}
+              </div>
+              <ShoppingCart className="size-10" />
+            </div>
           </button>
         </nav>
       </header>      
